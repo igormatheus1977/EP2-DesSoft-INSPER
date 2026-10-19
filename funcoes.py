@@ -1,5 +1,10 @@
-def soma(a, b):
-    return a + b
+def define_posicoes(linha, coluna, orientacao, tamanho):
+    posicoes = []
 
-def subtração(a, b):
-    return a - b
+    for i in range(tamanho):
+        if orientacao == 'vertical':
+            posicoes.append([linha + i, coluna])
+        else:
+            posicoes.append([linha, coluna + i])
+
+    return posicoes
