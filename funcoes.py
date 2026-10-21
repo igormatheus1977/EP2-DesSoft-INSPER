@@ -1,31 +1,31 @@
 def define_posicoes(linha, coluna, orientacao, tamanho):
     posicoes = []
 
-    for i in range(tamanho):                           # pega o tamanho do naviç
-        if orientacao == 'vertical':                   # se for verticial:
-            posicoes.append([linha + i, coluna])       # vê a linha i+1
-        if orientacao == 'horizontal':                 # se for horizontal:
-            posicoes.append([linha, coluna + i])       # vê a coluna j+1
+    for i in range(tamanho):                                                       # pega o tamanho do naviç
+        if orientacao == 'vertical':                                               # se for verticial:
+            posicoes.append([linha + i, coluna])                                   # vê a linha i+1
+        if orientacao == 'horizontal':                                             # se for horizontal:
+            posicoes.append([linha, coluna + i])                                   # vê a coluna j+1
 
     return posicoes
 
 def preenche_frota(frota, nome_navio, linha, coluna, orientacao, tamanho):
-    posicoes = define_posicoes(linha, coluna, orientacao, tamanho)      # reciclo a função anterior e defino posicoes do navio
+    posicoes = define_posicoes(linha, coluna, orientacao, tamanho)                 # reciclo a função anterior e defino posicoes do navio
 
-    if nome_navio in frota:                                             # se o navio ja tiver na frota, eu adiciono a posição dele 
+    if nome_navio in frota:                                                        # se o navio ja tiver na frota, eu adiciono a posição dele 
         frota[nome_navio].append(posicoes)
     else:
-        frota[nome_navio] = [posicoes]                                  # senão, eu faço uma lista, pq quando voltar, o navio ja existirá e basta adiocionar com o append anterior
+        frota[nome_navio] = [posicoes]                                             # senão, eu faço uma lista, pq quando voltar, o navio ja existirá e basta adiocionar com o append anterior
 
     return frota
 
 def faz_jogada(tabuleiro, linha, coluna):
-    tabuleiro_novo = tabuleiro                         # cria um novo tabuleiro cópia
+    tabuleiro_novo = tabuleiro                                                     # cria um novo tabuleiro cópia
     
     if tabuleiro[linha][coluna] == 1:
-        tabuleiro_novo[linha][coluna] = 'X'            # se o elemento for igual a 1: 1 -> "X"
+        tabuleiro_novo[linha][coluna] = 'X'                                        # se o elemento for igual a 1: 1 -> "X"
     elif tabuleiro[linha][coluna] == 0:
-        tabuleiro_novo[linha][coluna] = '-'            # se o elemento for igual a 0: 0 -> "-"
+        tabuleiro_novo[linha][coluna] = '-'                                        # se o elemento for igual a 0: 0 -> "-"
 
     return tabuleiro_novo
 
@@ -35,7 +35,7 @@ def posiciona_frota(frota):
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],                      # tabuleiro 10x10
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],                                                  # tabuleiro 10x10
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -43,37 +43,37 @@ def posiciona_frota(frota):
   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ]
 
-    for navios in frota.values():                      # para um navio dentro do dicionario frotas,
-        for posicao in navios:                         # para uma posição de um navio dentro da frota,
-            for linha, coluna in posicao:              # para uma linha e uma coluna dentro da posição do navio dentro da frota,
-                tabuleiro[linha][coluna] = 1           # o tabuleiro na posição linha x coluna, virará 1
+    for navios in frota.values():                                                  # para um navio dentro do dicionario frotas,
+        for posicao in navios:                                                     # para uma posição de um navio dentro da frota,
+            for linha, coluna in posicao:                                          # para uma linha e uma coluna dentro da posição do navio dentro da frota,
+                tabuleiro[linha][coluna] = 1                                       # o tabuleiro na posição linha x coluna, virará 1
 
-    return tabuleiro                                   # retorna o tabuleiro preenchido
+    return tabuleiro                                                               # retorna o tabuleiro preenchido
 
 def afundados(frota, tabuleiro):
-    counter = 0                                        # inicia a contabilização
+    counter = 0                                                                    # inicia a contabilização
 
-    for navios in frota.values():                      # para um návio dentro do frotas
-        for posicoes in navios:                        # para uma posição dentro do návio
-            acertos = 0                                # o codigo acertou 0 vezes 
-            for linha, coluna in posicoes:             # para uma linha e uma coluna dentro dessa poição:
-                if tabuleiro[linha][coluna] == "X":    # se o tabuleiro na linha x coluna for = x
-                    acertos += 1                       # o acerto é adicionado em 1
-            if acertos == len(posicoes):               # se o numero de acertos for igual ao 
-                counter += 1                           # tamanho do návio, counter é adicionado 1
+    for navios in frota.values():                                                  # para um návio dentro do frotas
+        for posicoes in navios:                                                    # para uma posição dentro do návio
+            acertos = 0                                                            # o codigo acertou 0 vezes 
+            for linha, coluna in posicoes:                                         # para uma linha e uma coluna dentro dessa poição:
+                if tabuleiro[linha][coluna] == "X":                                # se o tabuleiro na linha x coluna for = x
+                    acertos += 1                                                   # o acerto é adicionado em 1
+            if acertos == len(posicoes):                                           # se o numero de acertos for igual ao 
+                counter += 1                                                       # tamanho do návio, counter é adicionado 1
     return counter
 
 def posicao_valida(frota, linha, coluna, orientacao, tamanho):
     posicaoatual = define_posicoes(linha, coluna, orientacao, tamanho)
 
-    for l, c in posicaoatual:                         # para cada casa do navio,
-        if l < 0 or l > 9 or c < 0 or c > 9:          # se sair do tabuleiro,
-            return False                              # a posicão é inválida
+    for l, c in posicaoatual:                                                      # para cada casa do navio,
+        if l < 0 or l > 9 or c < 0 or c > 9:                                       # se sair do tabuleiro,
+            return False                                                           # a posicão é inválida
 
-    for navios in frota.values():                     # para cada navio na frota,
-        for posicoes in navios:                       # para cada casa do navio,
-            for l, c in posicoes:                     # para uma linha e coluna na casa,
-                if [l, c] in posicaoatual:            # se [l, c] ja estiver na posição que quer colocar,
-                    return False                      # retornará falso
+    for navios in frota.values():                                                  # para cada navio na frota,
+        for posicoes in navios:                                                    # para cada casa do navio,
+            for l, c in posicoes:                                                  # para uma linha e coluna na casa,
+                if [l, c] in posicaoatual:                                         # se [l, c] ja estiver na posição que quer colocar,
+                    return False                                                   # retornará falso
     
-    return True                                       # senão, retorna verdadeiro
+    return True                                                                    # senão, retorna verdadeiro
