@@ -63,3 +63,17 @@ def afundados(frota, tabuleiro):
                 counter += 1                           # tamanho do návio, counter é adicionado 1
     return counter
 
+def posicao_valida(frota, linha, coluna, orientacao, tamanho):
+    posicaoatual = define_posicoes(linha, coluna, orientacao, tamanho)
+
+    for l, c in posicaoatual:                         # para cada casa do navio,
+        if l < 0 or l > 9 or c < 0 or c > 9:          # se sair do tabuleiro,
+            return False                              # a posicão é inválida
+
+    for navios in frota.values():                     # para cada navio na frota,
+        for posicoes in navios:                       # para cada casa do navio,
+            for l, c in posicoes:                     # para uma linha e coluna na casa,
+                if [l, c] in posicaoatual:            # se [l, c] ja estiver na posição que quer colocar,
+                    return False                      # retornará falso
+    
+    return True                                       # senão, retorna verdadeiro
