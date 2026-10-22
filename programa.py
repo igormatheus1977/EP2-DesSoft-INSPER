@@ -9,17 +9,17 @@ nomes = [                                                                       
 ]
 
 tamanhos = {                                                                                                # dicionarios com os tamanhos dos navios
-    "porta-aviões": 4,                                                                                      # em que as chaves são seus nomes
-    "navio-tanque": 3,                                                                                      # e os valores são seus tamanhos
+    "porta-aviões":     4,                                                                                  # em que as chaves são seus nomes
+    "navio-tanque":     3,                                                                                  # e os valores são seus tamanhos
     "contratorpedeiro": 2,
-    "submarino": 1
+    "submarino":        1
 }
 
 quantidades = {                                                                                             # dicionarios com as quantidades de navios
-    "porta-aviões": 1,                                                                                      # em que as chaves são seus nomes
-    "navio-tanque": 2,                                                                                      # e os valores são suas quantidades
+    "porta-aviões":     1,                                                                                  # em que as chaves são seus nomes
+    "navio-tanque":     2,                                                                                  # e os valores são suas quantidades
     "contratorpedeiro": 3,
-    "submarino": 4
+    "submarino":        4
 }
 
 for navio in nomes:                                                                                         # para cada navio na lista 
